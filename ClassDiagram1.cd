@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="NameAndType">
+  <Comment CommentText="Used in Combat">
+    <Position X="9.319" Y="3.557" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="Dungeon_Crawl.src.Character.Monster" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAEAAQAAAAAAGBAAAAEABAEIAEAQAAQAAAgAAAFAA=</HashCode>
+      <FileName>src\Character\Monster.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Dungeon_Crawl.src.Character.MonsterGenerator" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\Character\MonsterGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dungeon_Crawl.src.Character.Player" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAAJQQAAAAAAHBBAgAEADAAABAAQAASAAAhAAABAA=</HashCode>
+      <FileName>src\Character\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Dungeon_Crawl.src.Character.Stats" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAACACAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>src\Character\Stats.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dungeon_Crawl.src.Combat.Combat" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAACAAAAAAAABAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>src\Combat\Combat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dungeon_Crawl.src.Combat.CombatUI" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAEGBAAAAgQAQBAAAAAAAggAABAAAAAEAAAAgAAQAA=</HashCode>
+      <FileName>src\Combat\CombatUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dungeon_Crawl.src.Combat.Encounter" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAABEAAABBAACAABAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>src\Combat\Encounter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dungeon_Crawl.src.Combat.CombatInputHandler.CombatInputHandler" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAJQBAABAAAAAAAAhIEBAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\Combat\CombatInputHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dungeon_Crawl.src.Combat.Skills.HeavySlash" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAACAAAAAAAAAAAAACAAAAAAAAAAABAA=</HashCode>
+      <FileName>src\Combat\Skills\HeavySlash.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Dungeon_Crawl.src.Combat.Skills.NormalSlash" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAACAAAAAAAAAAAAACAAAAAAAAAAABAA=</HashCode>
+      <FileName>src\Combat\Skills\NormalSlash.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Dungeon_Crawl.src.Combat.Skills.RiskySlash" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAACAAAAAAAAAAAAACAAAAAAAAAAABAA=</HashCode>
+      <FileName>src\Combat\Skills\RiskySlash.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="Dungeon_Crawl.src.Combat.ICombatant" Collapsed="true">
+    <Position X="3.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAACBAAAAEABAAAAAAQAAQAAAgAAABAA=</HashCode>
+      <FileName>src\Combat\ICombatant.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Dungeon_Crawl.src.Combat.ISkill" Collapsed="true">
+    <Position X="7" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAACAAAAAAAAAAAAACAAAAAAAAAAABAA=</HashCode>
+      <FileName>src\Combat\ISkill.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Dungeon_Crawl.src.IItem" Collapsed="true">
+    <Position X="5.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAABAA=</HashCode>
+      <FileName>src\IItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Dungeon_Crawl.src.Character.Stat" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAABAAAAAAAAAAQAAAAgAAAAAEAQADA=</HashCode>
+      <FileName>src\Character\Stats.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Dungeon_Crawl.src.Combat.CombatInputHandler.MenuOptionSelected" Collapsed="true">
+    <Position X="3.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAEAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\Combat\CombatInputHandler.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
