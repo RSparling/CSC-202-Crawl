@@ -56,8 +56,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Character\Monster.cs" />
     <Compile Include="src\Character\MonsterGenerator.cs" />
+    <Compile Include="src\Character\NavigationInputHandler.cs" />
     <Compile Include="src\Character\Player.cs" />
     <Compile Include="src\Character\Stats.cs" />
+    <Compile Include="src\DungeonRenderer.cs" />
     <Compile Include="src\Combat\Combat.cs" />
     <Compile Include="src\Combat\CombatInputHandler.cs" />
     <Compile Include="src\Combat\CombatUI.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="src\Combat\Skills\HeavySlash.cs" />
     <Compile Include="src\Combat\Skills\NormalSlash.cs" />
     <Compile Include="src\Combat\Skills\RiskySlash.cs" />
+    <Compile Include="src\Dungeon\MapData.cs" />
     <Compile Include="src\IItem.cs" />
     <EmbeddedResource Include="DungeonForm.resx">
       <DependentUpon>DungeonForm.cs</DependentUpon>
@@ -97,6 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Hallway.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DungeonWall.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\Player\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

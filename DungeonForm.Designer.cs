@@ -36,17 +36,27 @@
             this.button_Item = new System.Windows.Forms.Button();
             this.button_Skill = new System.Windows.Forms.Button();
             this.groupCombatPanel = new System.Windows.Forms.GroupBox();
-            this.buttonDebugStartEncounter = new System.Windows.Forms.Button();
             this.textbox_CombatLog = new System.Windows.Forms.RichTextBox();
+            this.buttonDebugStartEncounter = new System.Windows.Forms.Button();
             this.bar_Player_HealthBar = new System.Windows.Forms.ProgressBar();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label_Player_HP = new System.Windows.Forms.Label();
+            this.groupPlayerVitals = new System.Windows.Forms.GroupBox();
             this.textbox_HitPoints = new System.Windows.Forms.TextBox();
+            this.label_Player_HP = new System.Windows.Forms.Label();
             this.buttonDebugEndEncounter = new System.Windows.Forms.Button();
+            this.imagePlane_DungeonEnviroment = new System.Windows.Forms.PictureBox();
+            this.groupNavigation = new System.Windows.Forms.GroupBox();
+            this.button_MoveLeft = new System.Windows.Forms.Button();
+            this.button_MoveBack = new System.Windows.Forms.Button();
+            this.button_MoveRight = new System.Windows.Forms.Button();
+            this.button_MoveForward = new System.Windows.Forms.Button();
+            this.button_TurnLeft = new System.Windows.Forms.Button();
+            this.button_TurnRight = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_MonsterSprite)).BeginInit();
             this.groupCombatOptions.SuspendLayout();
             this.groupCombatPanel.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupPlayerVitals.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imagePlane_DungeonEnviroment)).BeginInit();
+            this.groupNavigation.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox_MonsterSprite
@@ -131,7 +141,15 @@
             this.groupCombatPanel.TabIndex = 3;
             this.groupCombatPanel.TabStop = false;
             this.groupCombatPanel.Text = "Combat Log";
-            this.groupCombatPanel.Enter += new System.EventHandler(this.groupCombatPanel_Enter);
+            // 
+            // textbox_CombatLog
+            // 
+            this.textbox_CombatLog.Location = new System.Drawing.Point(6, 20);
+            this.textbox_CombatLog.Name = "textbox_CombatLog";
+            this.textbox_CombatLog.ReadOnly = true;
+            this.textbox_CombatLog.Size = new System.Drawing.Size(1164, 177);
+            this.textbox_CombatLog.TabIndex = 0;
+            this.textbox_CombatLog.Text = "";
             // 
             // buttonDebugStartEncounter
             // 
@@ -144,15 +162,6 @@
             this.buttonDebugStartEncounter.UseVisualStyleBackColor = true;
             this.buttonDebugStartEncounter.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textbox_CombatLog
-            // 
-            this.textbox_CombatLog.Location = new System.Drawing.Point(6, 20);
-            this.textbox_CombatLog.Name = "textbox_CombatLog";
-            this.textbox_CombatLog.ReadOnly = true;
-            this.textbox_CombatLog.Size = new System.Drawing.Size(1164, 177);
-            this.textbox_CombatLog.TabIndex = 0;
-            this.textbox_CombatLog.Text = "";
-            // 
             // bar_Player_HealthBar
             // 
             this.bar_Player_HealthBar.Location = new System.Drawing.Point(0, 57);
@@ -161,28 +170,18 @@
             this.bar_Player_HealthBar.TabIndex = 5;
             this.bar_Player_HealthBar.Value = 30;
             // 
-            // groupBox1
+            // groupPlayerVitals
             // 
-            this.groupBox1.Controls.Add(this.textbox_HitPoints);
-            this.groupBox1.Controls.Add(this.label_Player_HP);
-            this.groupBox1.Controls.Add(this.bar_Player_HealthBar);
-            this.groupBox1.Location = new System.Drawing.Point(40, 172);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 140);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Vitals";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // label_Player_HP
-            // 
-            this.label_Player_HP.AutoSize = true;
-            this.label_Player_HP.Location = new System.Drawing.Point(6, 30);
-            this.label_Player_HP.Name = "label_Player_HP";
-            this.label_Player_HP.Size = new System.Drawing.Size(49, 13);
-            this.label_Player_HP.TabIndex = 6;
-            this.label_Player_HP.Text = "HitPoints";
-            this.label_Player_HP.Click += new System.EventHandler(this.label1_Click);
+            this.groupPlayerVitals.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.groupPlayerVitals.Controls.Add(this.textbox_HitPoints);
+            this.groupPlayerVitals.Controls.Add(this.label_Player_HP);
+            this.groupPlayerVitals.Controls.Add(this.bar_Player_HealthBar);
+            this.groupPlayerVitals.Location = new System.Drawing.Point(27, 229);
+            this.groupPlayerVitals.Name = "groupPlayerVitals";
+            this.groupPlayerVitals.Size = new System.Drawing.Size(200, 140);
+            this.groupPlayerVitals.TabIndex = 6;
+            this.groupPlayerVitals.TabStop = false;
+            this.groupPlayerVitals.Text = "Vitals";
             // 
             // textbox_HitPoints
             // 
@@ -192,6 +191,15 @@
             this.textbox_HitPoints.Size = new System.Drawing.Size(37, 20);
             this.textbox_HitPoints.TabIndex = 7;
             this.textbox_HitPoints.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label_Player_HP
+            // 
+            this.label_Player_HP.AutoSize = true;
+            this.label_Player_HP.Location = new System.Drawing.Point(6, 30);
+            this.label_Player_HP.Name = "label_Player_HP";
+            this.label_Player_HP.Size = new System.Drawing.Size(49, 13);
+            this.label_Player_HP.TabIndex = 6;
+            this.label_Player_HP.Text = "HitPoints";
             // 
             // buttonDebugEndEncounter
             // 
@@ -203,6 +211,85 @@
             this.buttonDebugEndEncounter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonDebugEndEncounter.UseVisualStyleBackColor = true;
             // 
+            // imagePlane_DungeonEnviroment
+            // 
+            this.imagePlane_DungeonEnviroment.Location = new System.Drawing.Point(0, 0);
+            this.imagePlane_DungeonEnviroment.Name = "imagePlane_DungeonEnviroment";
+            this.imagePlane_DungeonEnviroment.Size = new System.Drawing.Size(1920, 1080);
+            this.imagePlane_DungeonEnviroment.TabIndex = 8;
+            this.imagePlane_DungeonEnviroment.TabStop = false;
+            // 
+            // groupNavigation
+            // 
+            this.groupNavigation.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.groupNavigation.Controls.Add(this.button_TurnRight);
+            this.groupNavigation.Controls.Add(this.button_TurnLeft);
+            this.groupNavigation.Controls.Add(this.button_MoveForward);
+            this.groupNavigation.Controls.Add(this.button_MoveRight);
+            this.groupNavigation.Controls.Add(this.button_MoveBack);
+            this.groupNavigation.Controls.Add(this.button_MoveLeft);
+            this.groupNavigation.Location = new System.Drawing.Point(254, 220);
+            this.groupNavigation.Name = "groupNavigation";
+            this.groupNavigation.Size = new System.Drawing.Size(255, 149);
+            this.groupNavigation.TabIndex = 9;
+            this.groupNavigation.TabStop = false;
+            this.groupNavigation.Text = "Navigation";
+            // 
+            // button_MoveLeft
+            // 
+            this.button_MoveLeft.Location = new System.Drawing.Point(7, 103);
+            this.button_MoveLeft.Name = "button_MoveLeft";
+            this.button_MoveLeft.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button_MoveLeft.Size = new System.Drawing.Size(75, 23);
+            this.button_MoveLeft.TabIndex = 0;
+            this.button_MoveLeft.Text = "Left";
+            this.button_MoveLeft.UseVisualStyleBackColor = true;
+            // 
+            // button_MoveBack
+            // 
+            this.button_MoveBack.Location = new System.Drawing.Point(89, 103);
+            this.button_MoveBack.Name = "button_MoveBack";
+            this.button_MoveBack.Size = new System.Drawing.Size(75, 23);
+            this.button_MoveBack.TabIndex = 1;
+            this.button_MoveBack.Text = "Back";
+            this.button_MoveBack.UseVisualStyleBackColor = true;
+            // 
+            // button_MoveRight
+            // 
+            this.button_MoveRight.Location = new System.Drawing.Point(171, 103);
+            this.button_MoveRight.Name = "button_MoveRight";
+            this.button_MoveRight.Size = new System.Drawing.Size(75, 23);
+            this.button_MoveRight.TabIndex = 2;
+            this.button_MoveRight.Text = "Right";
+            this.button_MoveRight.UseVisualStyleBackColor = true;
+            // 
+            // button_MoveForward
+            // 
+            this.button_MoveForward.Location = new System.Drawing.Point(89, 66);
+            this.button_MoveForward.Name = "button_MoveForward";
+            this.button_MoveForward.Size = new System.Drawing.Size(75, 23);
+            this.button_MoveForward.TabIndex = 3;
+            this.button_MoveForward.Text = "Forward";
+            this.button_MoveForward.UseVisualStyleBackColor = true;
+            // 
+            // button_TurnLeft
+            // 
+            this.button_TurnLeft.Location = new System.Drawing.Point(7, 19);
+            this.button_TurnLeft.Name = "button_TurnLeft";
+            this.button_TurnLeft.Size = new System.Drawing.Size(75, 23);
+            this.button_TurnLeft.TabIndex = 4;
+            this.button_TurnLeft.Text = "Turn Left";
+            this.button_TurnLeft.UseVisualStyleBackColor = true;
+            // 
+            // button_TurnRight
+            // 
+            this.button_TurnRight.Location = new System.Drawing.Point(160, 19);
+            this.button_TurnRight.Name = "button_TurnRight";
+            this.button_TurnRight.Size = new System.Drawing.Size(75, 23);
+            this.button_TurnRight.TabIndex = 5;
+            this.button_TurnRight.Text = "Turn Right";
+            this.button_TurnRight.UseVisualStyleBackColor = true;
+            // 
             // DungeonForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -210,19 +297,23 @@
             this.BackgroundImage = global::Dungeon_Crawl.Properties.Resources.Hallway;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.groupNavigation);
             this.Controls.Add(this.buttonDebugEndEncounter);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupPlayerVitals);
             this.Controls.Add(this.buttonDebugStartEncounter);
             this.Controls.Add(this.groupCombatPanel);
             this.Controls.Add(this.groupCombatOptions);
             this.Controls.Add(this.pictureBox_MonsterSprite);
+            this.Controls.Add(this.imagePlane_DungeonEnviroment);
             this.Name = "DungeonForm";
             this.Text = "Dungeon";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_MonsterSprite)).EndInit();
             this.groupCombatOptions.ResumeLayout(false);
             this.groupCombatPanel.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupPlayerVitals.ResumeLayout(false);
+            this.groupPlayerVitals.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imagePlane_DungeonEnviroment)).EndInit();
+            this.groupNavigation.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -240,10 +331,18 @@
         private System.Windows.Forms.Button buttonDebugStartEncounter;
         private System.Windows.Forms.RichTextBox textbox_CombatLog;
         private System.Windows.Forms.ProgressBar bar_Player_HealthBar;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupPlayerVitals;
         private System.Windows.Forms.Label label_Player_HP;
         private System.Windows.Forms.TextBox textbox_HitPoints;
         private System.Windows.Forms.Button buttonDebugEndEncounter;
+        private System.Windows.Forms.PictureBox imagePlane_DungeonEnviroment;
+        private System.Windows.Forms.GroupBox groupNavigation;
+        private System.Windows.Forms.Button button_TurnRight;
+        private System.Windows.Forms.Button button_TurnLeft;
+        private System.Windows.Forms.Button button_MoveForward;
+        private System.Windows.Forms.Button button_MoveRight;
+        private System.Windows.Forms.Button button_MoveBack;
+        private System.Windows.Forms.Button button_MoveLeft;
     }
 }
 

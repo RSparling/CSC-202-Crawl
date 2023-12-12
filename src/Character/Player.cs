@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dungeon_Crawl.src.Combat;
 using Dungeon_Crawl.src.Combat.Skills;
+using Dungeon_Crawl.src.Dungeon;
 
 namespace Dungeon_Crawl.src.Character
 {
@@ -18,6 +19,65 @@ namespace Dungeon_Crawl.src.Character
         private List<ISkill> attacks = new List<ISkill>(); // List of attack skills
         private List<ISkill> skills = new List<ISkill>(); // List of skills
         private List<IItem> items = new List<IItem>(); // List of items
+
+        private int positionX = 3;
+        private int positionY = 8;
+
+        public int facingRotation = 0;
+        public Direction FacingDirection { get; private set; } = Direction.North;
+
+        public enum Direction
+        {
+            North,
+            East,
+            South,
+            West
+        }
+
+        public int GetPositionX()
+        {
+            return positionX;
+        }
+
+        public int GetPositionY()
+        {
+            return positionY;
+        }
+
+        public void TurnLeft()
+        {
+            FacingDirection = FacingDirection == Direction.North ? Direction.West : FacingDirection - 1;
+            UpdateDirection();
+        }
+
+        public void TurnRight()
+        {
+            FacingDirection = FacingDirection == Direction.West ? Direction.North : FacingDirection + 1;
+            UpdateDirection();
+        }
+
+        private void UpdateDirection()
+        {
+            // Convert enum to angle and update DungeonRenderer
+            int angle = (int)FacingDirection * 90;
+            DungeonRenderer.Instance.UpdatePlayerAngle(angle);
+        }
+
+        public void Move(int X, int Y)
+        {
+            //add X to player position
+            X += positionX;
+            //add Y to player position
+            Y += positionY;
+            //check if player is in bounds using MapData.Get.IsInBounds
+            if (!MapData.Get.IsInBounds(X, Y) || !MapData.Get.IsWalkable(X, Y))
+                return;
+            //if player is in bounds, update positionX and positionY
+            positionX = X;
+            positionY = Y;
+            MessageBox.Show("Player Position: " + positionX + ", " + positionY + "\nPlayer Rotation: " + facingRotation + "\nPlayer Direction: " + X + ", " + Y + "\nPlayer Map Tile: " + MapData.Get.GetTile(positionX + X, positionY + Y) + "\nPlayer Map Bounds: " + MapData.Get.IsInBounds(positionX + X, positionY + Y) + "\nPlayer Map Walkable: " + MapData.Get.IsWalkable(positionX + X, positionY + Y), "Debug");
+            DungeonRenderer.Instance.UpdatePlayerPosition(positionX, positionY);
+        }
 
         private void LoadSkillsAndAttacks()
         {

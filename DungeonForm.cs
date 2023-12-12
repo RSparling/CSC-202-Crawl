@@ -1,7 +1,9 @@
-﻿using Dungeon_Crawl.src.Character;
+﻿using Dungeon_Crawl.Properties;
+using Dungeon_Crawl.src;
+using Dungeon_Crawl.src.Character;
 using Dungeon_Crawl.src.Combat;
 using Dungeon_Crawl.src.Combat.CombatInputHandler;
-
+using Dungeon_Crawl.src.Dungeon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,16 +21,44 @@ namespace Dungeon_Crawl
     {
         private CombatInputHandler combatInputHandler;
         private Player player = new Player();
+        private MapData map = new MapData();
+        private DungeonRenderer dungeonRenderer;
+
+        private NavigationInputHandler navInput = new NavigationInputHandler();
 
         public DungeonForm()
         {
             InitializeComponent();
+
+            button_TurnLeft.Click += navInput.TurnLeft;
+            button_TurnRight.Click += navInput.TurnRight;
+            button_MoveForward.Click += navInput.MoveForward;
+            button_MoveRight.Click += navInput.MoveRight;
+            button_MoveLeft.Click += navInput.MoveLeft;
+            button_MoveBack.Click += navInput.MoveBackward;
+
             combatInputHandler = new CombatInputHandler(this);
 
             CombatSubMenu.DoubleClick += CombatInputHandler.Get.OnCombatSubMenuDoubleClick;
             ReSubscribeCombatSubMenu(combatInputHandler);
             buttonDebugStartEncounter.Click += debug_button_StartEncounter;
             buttonDebugEndEncounter.Click += debug_button_EndEncounter;
+            dungeonRenderer = new DungeonRenderer(imagePlane_DungeonEnviroment.Width, imagePlane_DungeonEnviroment.Height, Resources.DungeonWall);
+
+            DoubleBuffered = true; //preven flickering
+            imagePlane_DungeonEnviroment.Paint += RenderDungeonBackground;
+            CombatUIVisible(false);
+        }
+
+        public void InvalidateDungeonBackground()
+        {
+            imagePlane_DungeonEnviroment.Invalidate();
+        }
+
+        private void RenderDungeonBackground(object sender, PaintEventArgs e)
+        {
+            Bitmap frame = dungeonRenderer.RenderFrame();
+            e.Graphics.DrawImage(frame, 0, 0);
         }
 
         public int GetSelectedItem()
@@ -40,10 +70,6 @@ namespace Dungeon_Crawl
         {
             CombatSubMenu.Items.Clear();
             CombatSubMenu.Items.AddRange(options.ToArray());
-        }
-
-        private void groupCombatPanel_Enter(object sender, EventArgs e)
-        {
         }
 
         public void ReSubscribeCombatSubMenu(CombatInputHandler cih)
@@ -71,14 +97,6 @@ namespace Dungeon_Crawl
             }
 
             textbox_CombatLog.Text = log;
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
         }
 
         private void debug_button_StartEncounter(object sender, EventArgs e)
@@ -113,8 +131,34 @@ namespace Dungeon_Crawl
             textbox_HitPoints.Text = getHitpoints + "/" + getMaxHitpoints;
         }
 
-        public void HidCombatUI()
+        public void CombatUIVisible(bool setVisible)
         {
+            if (setVisible)
+            {
+                groupCombatOptions.Show();
+                groupPlayerVitals.Show();
+                groupCombatPanel.Show();
+                pictureBox_MonsterSprite.Show();
+            }
+            else
+            {
+                groupCombatOptions.Hide();
+                groupPlayerVitals.Hide();
+                groupCombatPanel.Hide();
+                pictureBox_MonsterSprite.Hide();
+            }
+        }
+
+        public void NavigationUIVisible(bool setVisible)
+        {
+            if (setVisible)
+            {
+                groupNavigation.Show();
+            }
+            else
+            {
+                groupNavigation.Hide();
+            }
         }
     }
 }
