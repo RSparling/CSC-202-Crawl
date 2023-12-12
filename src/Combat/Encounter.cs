@@ -15,6 +15,10 @@ namespace Dungeon_Crawl.src.Combat
 
         private static Encounter instance;
 
+        private float baseEncounterChance = 3;
+        private float encounterChancePerStep = .1f;
+        private float currentEncounterChance = 0;
+
         public static Encounter Get
         {
             get
@@ -36,6 +40,7 @@ namespace Dungeon_Crawl.src.Combat
 
         public void StartEncoutner()
         {
+            NavigationInputHandler.Get.HideUI();
             CombatUI.Get.UpdateHealth();
             monster = new Monster();
 
@@ -72,6 +77,22 @@ namespace Dungeon_Crawl.src.Combat
 
         public void EndCombat()
         {
+            CombatUI.Get.ShowUI();
+
+            NavigationInputHandler.Get.ShowUI();
+        }
+
+        public void CheckIfEncounter()
+        {
+            currentEncounterChance += encounterChancePerStep;
+            Random rand = new Random(Guid.NewGuid().ToString().GetHashCode());
+            float roll = rand.Next(0, 100);
+            if (roll < currentEncounterChance)
+            {
+                StartEncoutner();
+            }
+            else
+                return;
         }
     }
 }

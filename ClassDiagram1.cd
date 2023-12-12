@@ -21,10 +21,9 @@
   <Class Name="Dungeon_Crawl.src.Character.Player" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="3.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AASAAJQQAAAAAAHBBAgAEADAAABAAQAASAAAhAAABAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\Character\Player.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Dungeon_Crawl.src.Character.Stats" Collapsed="true">
     <Position X="8.75" Y="2.5" Width="1.5" />
