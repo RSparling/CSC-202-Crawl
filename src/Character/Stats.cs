@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Dungeon_Crawl.src.Character
 {
-    internal class Stats
+    public class Stats
     {
         private Dictionary<Stat, int> stats;
 
         public Stats()
         {
             stats = new Dictionary<Stat, int>();
-            stats.Add(Stat.Stregnth, 10);
+            stats.Add(Stat.Strength, 10);
             stats.Add(Stat.Agility, 10);
             stats.Add(Stat.Intelligence, 10);
             stats.Add(Stat.Vitality, 10);
@@ -43,11 +43,22 @@ namespace Dungeon_Crawl.src.Character
             if (this[Stat.Hitpoints] > this[Stat.MaxHitpoints])
                 this[Stat.Hitpoints] = this[Stat.MaxHitpoints];
         }
+
+        public void Modify(Stat stat, int ammount, bool preventNeg = true)
+
+        {
+            this[stat] += ammount;
+            if (!preventNeg)
+                return;
+
+            if (this[stat] < 0)
+                this[stat] = 0;
+        }
     }
 
-    internal enum Stat
+    public enum Stat
     {
-        Stregnth,
+        Strength,
         Agility,
         Intelligence,
         Vitality,

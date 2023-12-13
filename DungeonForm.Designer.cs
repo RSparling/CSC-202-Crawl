@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox_MonsterSprite = new System.Windows.Forms.PictureBox();
             this.groupCombatOptions = new System.Windows.Forms.GroupBox();
             this.CombatSubMenu = new System.Windows.Forms.ListBox();
             this.button_Run = new System.Windows.Forms.Button();
@@ -37,35 +36,33 @@
             this.button_Skill = new System.Windows.Forms.Button();
             this.groupCombatPanel = new System.Windows.Forms.GroupBox();
             this.textbox_CombatLog = new System.Windows.Forms.RichTextBox();
-            this.buttonDebugStartEncounter = new System.Windows.Forms.Button();
             this.bar_Player_HealthBar = new System.Windows.Forms.ProgressBar();
             this.groupPlayerVitals = new System.Windows.Forms.GroupBox();
             this.textbox_HitPoints = new System.Windows.Forms.TextBox();
             this.label_Player_HP = new System.Windows.Forms.Label();
-            this.buttonDebugEndEncounter = new System.Windows.Forms.Button();
-            this.imagePlane_DungeonEnviroment = new System.Windows.Forms.PictureBox();
             this.groupNavigation = new System.Windows.Forms.GroupBox();
-            this.button_MoveLeft = new System.Windows.Forms.Button();
-            this.button_MoveBack = new System.Windows.Forms.Button();
-            this.button_MoveRight = new System.Windows.Forms.Button();
-            this.button_MoveForward = new System.Windows.Forms.Button();
-            this.button_TurnLeft = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.picture_Compass = new System.Windows.Forms.PictureBox();
             this.button_TurnRight = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_MonsterSprite)).BeginInit();
+            this.button_TurnLeft = new System.Windows.Forms.Button();
+            this.button_MoveForward = new System.Windows.Forms.Button();
+            this.button_MoveRight = new System.Windows.Forms.Button();
+            this.button_MoveBack = new System.Windows.Forms.Button();
+            this.button_MoveLeft = new System.Windows.Forms.Button();
+            this.pictureBox_TitleScreen = new System.Windows.Forms.PictureBox();
+            this.pictureBox_MonsterSprite = new System.Windows.Forms.PictureBox();
+            this.imagePlane_DungeonEnviroment = new System.Windows.Forms.PictureBox();
+            this.button_PlayGame = new System.Windows.Forms.Button();
             this.groupCombatOptions.SuspendLayout();
             this.groupCombatPanel.SuspendLayout();
             this.groupPlayerVitals.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imagePlane_DungeonEnviroment)).BeginInit();
             this.groupNavigation.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_Compass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_TitleScreen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_MonsterSprite)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagePlane_DungeonEnviroment)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox_MonsterSprite
-            // 
-            this.pictureBox_MonsterSprite.Location = new System.Drawing.Point(753, 229);
-            this.pictureBox_MonsterSprite.Name = "pictureBox_MonsterSprite";
-            this.pictureBox_MonsterSprite.Size = new System.Drawing.Size(600, 800);
-            this.pictureBox_MonsterSprite.TabIndex = 0;
-            this.pictureBox_MonsterSprite.TabStop = false;
             // 
             // groupCombatOptions
             // 
@@ -151,17 +148,6 @@
             this.textbox_CombatLog.TabIndex = 0;
             this.textbox_CombatLog.Text = "";
             // 
-            // buttonDebugStartEncounter
-            // 
-            this.buttonDebugStartEncounter.Location = new System.Drawing.Point(12, 12);
-            this.buttonDebugStartEncounter.Name = "buttonDebugStartEncounter";
-            this.buttonDebugStartEncounter.Size = new System.Drawing.Size(127, 23);
-            this.buttonDebugStartEncounter.TabIndex = 4;
-            this.buttonDebugStartEncounter.Text = "Debug: Start Encoutner";
-            this.buttonDebugStartEncounter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonDebugStartEncounter.UseVisualStyleBackColor = true;
-            this.buttonDebugStartEncounter.Click += new System.EventHandler(this.button1_Click);
-            // 
             // bar_Player_HealthBar
             // 
             this.bar_Player_HealthBar.Location = new System.Drawing.Point(0, 57);
@@ -201,15 +187,117 @@
             this.label_Player_HP.TabIndex = 6;
             this.label_Player_HP.Text = "HitPoints";
             // 
-            // buttonDebugEndEncounter
+            // groupNavigation
             // 
-            this.buttonDebugEndEncounter.Location = new System.Drawing.Point(12, 52);
-            this.buttonDebugEndEncounter.Name = "buttonDebugEndEncounter";
-            this.buttonDebugEndEncounter.Size = new System.Drawing.Size(127, 23);
-            this.buttonDebugEndEncounter.TabIndex = 7;
-            this.buttonDebugEndEncounter.Text = "Debug: End Encounter";
-            this.buttonDebugEndEncounter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonDebugEndEncounter.UseVisualStyleBackColor = true;
+            this.groupNavigation.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.groupNavigation.Controls.Add(this.panel1);
+            this.groupNavigation.Controls.Add(this.button_TurnRight);
+            this.groupNavigation.Controls.Add(this.button_TurnLeft);
+            this.groupNavigation.Controls.Add(this.button_MoveForward);
+            this.groupNavigation.Controls.Add(this.button_MoveRight);
+            this.groupNavigation.Controls.Add(this.button_MoveBack);
+            this.groupNavigation.Controls.Add(this.button_MoveLeft);
+            this.groupNavigation.Location = new System.Drawing.Point(254, 80);
+            this.groupNavigation.Name = "groupNavigation";
+            this.groupNavigation.Size = new System.Drawing.Size(255, 333);
+            this.groupNavigation.TabIndex = 9;
+            this.groupNavigation.TabStop = false;
+            this.groupNavigation.Text = "Navigation";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.picture_Compass);
+            this.panel1.Location = new System.Drawing.Point(55, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(150, 150);
+            this.panel1.TabIndex = 6;
+            // 
+            // picture_Compass
+            // 
+            this.picture_Compass.BackgroundImage = global::Dungeon_Crawl.Properties.Resources.image_CompassNorth;
+            this.picture_Compass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picture_Compass.Cursor = System.Windows.Forms.Cursors.Default;
+            this.picture_Compass.Location = new System.Drawing.Point(0, 0);
+            this.picture_Compass.Name = "picture_Compass";
+            this.picture_Compass.Size = new System.Drawing.Size(150, 150);
+            this.picture_Compass.TabIndex = 0;
+            this.picture_Compass.TabStop = false;
+            this.picture_Compass.WaitOnLoad = true;
+            // 
+            // button_TurnRight
+            // 
+            this.button_TurnRight.Location = new System.Drawing.Point(159, 206);
+            this.button_TurnRight.Name = "button_TurnRight";
+            this.button_TurnRight.Size = new System.Drawing.Size(75, 23);
+            this.button_TurnRight.TabIndex = 5;
+            this.button_TurnRight.Text = "Turn Right";
+            this.button_TurnRight.UseVisualStyleBackColor = true;
+            // 
+            // button_TurnLeft
+            // 
+            this.button_TurnLeft.Location = new System.Drawing.Point(6, 206);
+            this.button_TurnLeft.Name = "button_TurnLeft";
+            this.button_TurnLeft.Size = new System.Drawing.Size(75, 23);
+            this.button_TurnLeft.TabIndex = 4;
+            this.button_TurnLeft.Text = "Turn Left";
+            this.button_TurnLeft.UseVisualStyleBackColor = true;
+            // 
+            // button_MoveForward
+            // 
+            this.button_MoveForward.Location = new System.Drawing.Point(88, 253);
+            this.button_MoveForward.Name = "button_MoveForward";
+            this.button_MoveForward.Size = new System.Drawing.Size(75, 23);
+            this.button_MoveForward.TabIndex = 3;
+            this.button_MoveForward.Text = "Forward";
+            this.button_MoveForward.UseVisualStyleBackColor = true;
+            // 
+            // button_MoveRight
+            // 
+            this.button_MoveRight.Location = new System.Drawing.Point(170, 290);
+            this.button_MoveRight.Name = "button_MoveRight";
+            this.button_MoveRight.Size = new System.Drawing.Size(75, 23);
+            this.button_MoveRight.TabIndex = 2;
+            this.button_MoveRight.Text = "Right";
+            this.button_MoveRight.UseVisualStyleBackColor = true;
+            // 
+            // button_MoveBack
+            // 
+            this.button_MoveBack.Location = new System.Drawing.Point(88, 290);
+            this.button_MoveBack.Name = "button_MoveBack";
+            this.button_MoveBack.Size = new System.Drawing.Size(75, 23);
+            this.button_MoveBack.TabIndex = 1;
+            this.button_MoveBack.Text = "Back";
+            this.button_MoveBack.UseVisualStyleBackColor = true;
+            // 
+            // button_MoveLeft
+            // 
+            this.button_MoveLeft.Location = new System.Drawing.Point(6, 290);
+            this.button_MoveLeft.Name = "button_MoveLeft";
+            this.button_MoveLeft.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button_MoveLeft.Size = new System.Drawing.Size(75, 23);
+            this.button_MoveLeft.TabIndex = 0;
+            this.button_MoveLeft.Text = "Left";
+            this.button_MoveLeft.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox_TitleScreen
+            // 
+            this.pictureBox_TitleScreen.BackgroundImage = global::Dungeon_Crawl.Properties.Resources.Title_Screen;
+            this.pictureBox_TitleScreen.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox_TitleScreen.Name = "pictureBox_TitleScreen";
+            this.pictureBox_TitleScreen.Size = new System.Drawing.Size(1920, 1080);
+            this.pictureBox_TitleScreen.TabIndex = 0;
+            this.pictureBox_TitleScreen.TabStop = false;
+            // 
+            // pictureBox_MonsterSprite
+            // 
+            this.pictureBox_MonsterSprite.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_MonsterSprite.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox_MonsterSprite.Location = new System.Drawing.Point(753, 229);
+            this.pictureBox_MonsterSprite.Name = "pictureBox_MonsterSprite";
+            this.pictureBox_MonsterSprite.Size = new System.Drawing.Size(600, 600);
+            this.pictureBox_MonsterSprite.TabIndex = 0;
+            this.pictureBox_MonsterSprite.TabStop = false;
             // 
             // imagePlane_DungeonEnviroment
             // 
@@ -219,101 +307,43 @@
             this.imagePlane_DungeonEnviroment.TabIndex = 8;
             this.imagePlane_DungeonEnviroment.TabStop = false;
             // 
-            // groupNavigation
+            // button_PlayGame
             // 
-            this.groupNavigation.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.groupNavigation.Controls.Add(this.button_TurnRight);
-            this.groupNavigation.Controls.Add(this.button_TurnLeft);
-            this.groupNavigation.Controls.Add(this.button_MoveForward);
-            this.groupNavigation.Controls.Add(this.button_MoveRight);
-            this.groupNavigation.Controls.Add(this.button_MoveBack);
-            this.groupNavigation.Controls.Add(this.button_MoveLeft);
-            this.groupNavigation.Location = new System.Drawing.Point(254, 220);
-            this.groupNavigation.Name = "groupNavigation";
-            this.groupNavigation.Size = new System.Drawing.Size(255, 149);
-            this.groupNavigation.TabIndex = 9;
-            this.groupNavigation.TabStop = false;
-            this.groupNavigation.Text = "Navigation";
-            // 
-            // button_MoveLeft
-            // 
-            this.button_MoveLeft.Location = new System.Drawing.Point(7, 103);
-            this.button_MoveLeft.Name = "button_MoveLeft";
-            this.button_MoveLeft.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button_MoveLeft.Size = new System.Drawing.Size(75, 23);
-            this.button_MoveLeft.TabIndex = 0;
-            this.button_MoveLeft.Text = "Left";
-            this.button_MoveLeft.UseVisualStyleBackColor = true;
-            // 
-            // button_MoveBack
-            // 
-            this.button_MoveBack.Location = new System.Drawing.Point(89, 103);
-            this.button_MoveBack.Name = "button_MoveBack";
-            this.button_MoveBack.Size = new System.Drawing.Size(75, 23);
-            this.button_MoveBack.TabIndex = 1;
-            this.button_MoveBack.Text = "Back";
-            this.button_MoveBack.UseVisualStyleBackColor = true;
-            // 
-            // button_MoveRight
-            // 
-            this.button_MoveRight.Location = new System.Drawing.Point(171, 103);
-            this.button_MoveRight.Name = "button_MoveRight";
-            this.button_MoveRight.Size = new System.Drawing.Size(75, 23);
-            this.button_MoveRight.TabIndex = 2;
-            this.button_MoveRight.Text = "Right";
-            this.button_MoveRight.UseVisualStyleBackColor = true;
-            // 
-            // button_MoveForward
-            // 
-            this.button_MoveForward.Location = new System.Drawing.Point(89, 66);
-            this.button_MoveForward.Name = "button_MoveForward";
-            this.button_MoveForward.Size = new System.Drawing.Size(75, 23);
-            this.button_MoveForward.TabIndex = 3;
-            this.button_MoveForward.Text = "Forward";
-            this.button_MoveForward.UseVisualStyleBackColor = true;
-            // 
-            // button_TurnLeft
-            // 
-            this.button_TurnLeft.Location = new System.Drawing.Point(7, 19);
-            this.button_TurnLeft.Name = "button_TurnLeft";
-            this.button_TurnLeft.Size = new System.Drawing.Size(75, 23);
-            this.button_TurnLeft.TabIndex = 4;
-            this.button_TurnLeft.Text = "Turn Left";
-            this.button_TurnLeft.UseVisualStyleBackColor = true;
-            // 
-            // button_TurnRight
-            // 
-            this.button_TurnRight.Location = new System.Drawing.Point(160, 19);
-            this.button_TurnRight.Name = "button_TurnRight";
-            this.button_TurnRight.Size = new System.Drawing.Size(75, 23);
-            this.button_TurnRight.TabIndex = 5;
-            this.button_TurnRight.Text = "Turn Right";
-            this.button_TurnRight.UseVisualStyleBackColor = true;
+            this.button_PlayGame.Location = new System.Drawing.Point(844, 610);
+            this.button_PlayGame.Name = "button_PlayGame";
+            this.button_PlayGame.Size = new System.Drawing.Size(272, 73);
+            this.button_PlayGame.TabIndex = 10;
+            this.button_PlayGame.Text = "Play";
+            this.button_PlayGame.UseVisualStyleBackColor = true;
+            this.button_PlayGame.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // DungeonForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Dungeon_Crawl.Properties.Resources.Hallway;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.button_PlayGame);
+            this.Controls.Add(this.pictureBox_TitleScreen);
             this.Controls.Add(this.groupNavigation);
-            this.Controls.Add(this.buttonDebugEndEncounter);
             this.Controls.Add(this.groupPlayerVitals);
-            this.Controls.Add(this.buttonDebugStartEncounter);
             this.Controls.Add(this.groupCombatPanel);
             this.Controls.Add(this.groupCombatOptions);
             this.Controls.Add(this.pictureBox_MonsterSprite);
             this.Controls.Add(this.imagePlane_DungeonEnviroment);
             this.Name = "DungeonForm";
             this.Text = "Dungeon";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_MonsterSprite)).EndInit();
+            this.Load += new System.EventHandler(this.DungeonForm_Load);
             this.groupCombatOptions.ResumeLayout(false);
             this.groupCombatPanel.ResumeLayout(false);
             this.groupPlayerVitals.ResumeLayout(false);
             this.groupPlayerVitals.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imagePlane_DungeonEnviroment)).EndInit();
             this.groupNavigation.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picture_Compass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_TitleScreen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_MonsterSprite)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagePlane_DungeonEnviroment)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -328,13 +358,11 @@
         private System.Windows.Forms.Button button_Item;
         private System.Windows.Forms.Button button_Skill;
         private System.Windows.Forms.GroupBox groupCombatPanel;
-        private System.Windows.Forms.Button buttonDebugStartEncounter;
         private System.Windows.Forms.RichTextBox textbox_CombatLog;
         private System.Windows.Forms.ProgressBar bar_Player_HealthBar;
         private System.Windows.Forms.GroupBox groupPlayerVitals;
         private System.Windows.Forms.Label label_Player_HP;
         private System.Windows.Forms.TextBox textbox_HitPoints;
-        private System.Windows.Forms.Button buttonDebugEndEncounter;
         private System.Windows.Forms.PictureBox imagePlane_DungeonEnviroment;
         private System.Windows.Forms.GroupBox groupNavigation;
         private System.Windows.Forms.Button button_TurnRight;
@@ -343,6 +371,10 @@
         private System.Windows.Forms.Button button_MoveRight;
         private System.Windows.Forms.Button button_MoveBack;
         private System.Windows.Forms.Button button_MoveLeft;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox picture_Compass;
+        private System.Windows.Forms.PictureBox pictureBox_TitleScreen;
+        private System.Windows.Forms.Button button_PlayGame;
     }
 }
 

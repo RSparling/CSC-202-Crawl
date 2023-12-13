@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dungeon_Crawl.src.Combat
 {
-    internal interface ICombatant
+    public interface ICombatant
     {
         int GetHitpoints();
 
@@ -26,5 +26,11 @@ namespace Dungeon_Crawl.src.Combat
         bool IsDead();
 
         string GetName();
+
+        void SetCurrentEnemy(ICombatant combatant);
+
+        void ProcessEffects();
+
+        void AddEffect(IEffect effect);
     }
 }

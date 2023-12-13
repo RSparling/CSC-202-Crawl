@@ -1,98 +1,124 @@
-﻿using System;
+﻿using Dungeon_Crawl.src.Character;
+using Dungeon_Crawl.src.Items;
+using Dungeon_Crawl.src.PlayerCore;
+using Dungeon_Crawl.src.PlayerCore.Components;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Dungeon_Crawl.src.Character;
 
 namespace Dungeon_Crawl.src.Combat
 {
-    internal class Encounter
+    public class Encounter
     {
         private Monster monster;
 
+        public static Encounter CurrentEncounter
+        {
+            get { return instance; }
+            private set { instance = value; }
+        }
+
+        public Encounter()
+        { instance = this; }
+
         private static Encounter instance;
 
-        private float baseEncounterChance = 3;
-        private float encounterChancePerStep = .1f;
-        private float currentEncounterChance = 0;
-
-        public static Encounter Get
+        public void StartCombat()
         {
-            get
-            {
-                if (instance == null)
-                    instance = new Encounter();
-                return instance;
-            }
+            DungeonForm form = DungeonForm.ActiveForm as DungeonForm;
+            PlayerCore.Player.Instance.GetComponent<PlayerControls>().ResetCombatSubmenu();
+            PlayerCore.Player.Instance.GetComponent<PlayerUI>().PrepForCombat();
+
+            monster = MonsterDictionary.Get.GetRandomMonster();
+
+            Player.Instance.GetComponent<PlayerCombat>().SetCurrentEnemy(monster);
+            monster.SetCurrentEnemy(Player.Instance.GetComponent<PlayerCombat>());
+            form.NavigationUIVisible(false);
+            form.CombatUIVisible(true);
+            form.imageMonster = monster.image;
+            form.RefreshMonsterImage();
+            AudioManager.Get.PlayMusic(AudioManager.SoundLibrary.sfx_StartFight);
+            AudioManager.Get.StopMusic();
+            AudioManager.Get.PlayMusic(AudioManager.SoundLibrary.music_combat);
         }
 
-        private Encounter()
+        public async void EndPlayerTurn()
         {
-            instance = this;
-            monster = new Monster();
+            if (Player.Instance.GetComponent<PlayerCombat>().IsDead())
+                EndCombat();
+            // Code to end the player's turn
+            Player.Instance.GetComponent<PlayerControls>().SuspendInput();
+            // Wait for a specified time (e.g., 2 seconds)
+            await Task.Delay(2000);
+
+            // Start the monster's turn
+            PerformMonstersTurn();
+            monster.ProcessEffects();
         }
 
-        public Monster GetMonster()
-        { return monster; }
-
-        public void StartEncoutner()
+        private void PerformMonstersTurn()
         {
-            NavigationInputHandler.Get.HideUI();
-            CombatUI.Get.UpdateHealth();
-            monster = new Monster();
-
-            CombatUI.Get.ShowUI();
-        }
-
-        public void EndPlayerTurn()
-        {
-            MessageBox.Show("Player Turn Over");
-            CombatUI.Get.UpdateHealth();
-            ProcessMonsterTurn();
-            if (Player.Get.IsDead())
-            {
-                MessageBox.Show("You Died");
-            }
-            else if
-                (monster.IsDead())
-            {
-                MessageBox.Show("You Win");
-            }
-        }
-
-        private void ProcessMonsterTurn()
-        {
+            if (monster.IsDead())
+                EndCombat();
             monster.Attack();
-            MessageBox.Show("Monster Turn Over");
-            CombatUI.Get.UpdateHealth();
-            EndMonsterTurn();
-        }
-
-        public void EndMonsterTurn()
-        {
+            Player.Instance.GetComponent<PlayerControls>().AllowInput();
+            Player.Instance.GetComponent<PlayerCombat>().ProcessEffects();
         }
 
         public void EndCombat()
         {
-            CombatUI.Get.ShowUI();
-
-            NavigationInputHandler.Get.ShowUI();
-        }
-
-        public void CheckIfEncounter()
-        {
-            currentEncounterChance += encounterChancePerStep;
-            Random rand = new Random(Guid.NewGuid().ToString().GetHashCode());
-            float roll = rand.Next(0, 100);
-            if (roll < currentEncounterChance)
+            DungeonForm form = DungeonForm.ActiveForm as DungeonForm;
+            if (monster.IsDead())
             {
-                StartEncoutner();
+                PlayFanfare();
+            }
+            else if (Player.Instance.GetComponent<PlayerCombat>().IsDead())
+            {
+                AudioManager.Get.StopMusic();
+                AudioManager.Get.PlayMusic(AudioManager.SoundLibrary.music_GameOver);
+                MessageBox.Show("You have died!");
+                form.Close();
             }
             else
-                return;
+            {
+                AudioManager.Get.PlaySoundEffect(AudioManager.SoundLibrary.sfx_RunAway);
+            }
+            form.NavigationUIVisible(true);
+            form.CombatUIVisible(false);
+            Player.Instance.GetComponent<PlayerControls>().AllowInput();
+        }
+
+        private async void RollLoot()
+        {
+            bool isLoot = Combat.Roll(3) < 12;
+
+            AudioManager.Get.StopMusic();
+            AudioManager.Get.PlaySoundEffect(AudioManager.SoundLibrary.sfx_WinFanFare);
+            MessageBox.Show("You won the battle!");
+            await Task.Delay(1000);
+            if (isLoot)
+            {
+                IItem item = ItemDictionary.GetCopyOfRandomItem();
+                Player.Instance.GetComponent<PlayerCombat>().AddItem(item);
+                AudioManager.Get.PlaySoundEffect(AudioManager.SoundLibrary.sfx_WinFanFare);
+                MessageBox.Show("You have found: " + item.GetName() + "!");
+            }
+            AudioManager.Get.StopMusic();
+            AudioManager.Get.PlayMusic(AudioManager.SoundLibrary.music_exploration);
+        }
+
+        private async void PlayFanfare()
+        {
+            AudioManager.Get.StopMusic();
+
+            AudioManager.Get.PlaySoundEffect(AudioManager.SoundLibrary.sfx_WinFanFare);
+            await Task.Delay(1000);
+            AudioManager.Get.StopMusic();
+            AudioManager.Get.PlayMusic(AudioManager.SoundLibrary.music_exploration);
+            RollLoot();
         }
     }
 }

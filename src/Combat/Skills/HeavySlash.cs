@@ -22,15 +22,17 @@ namespace Dungeon_Crawl.src.Combat.Skills
 
         public void OnSuccess(ICombatant attacker, ICombatant defender)
         {
-            int damage = Combat.Roll() * +attacker.GetStat(Stat.Stregnth) / 2;
+            int damage = Combat.Roll() * +attacker.GetStat(Stat.Strength) / 2;
             defender.TakeDamage(damage);
 
-            CombatUI.Get.UpdateCombatLog(attacker.GetName() + " manage to hit them with a heavy blow dealing: " + damage);
+            //CombatUI.Get.UpdateCombatLog(attacker.GetName() + " manage to hit them with a heavy blow dealing: " + damage);
+            AudioManager.Get.PlaySoundEffect(AudioManager.SoundLibrary.sfx_hit3);
         }
 
         public void OnFail(ICombatant attacker, ICombatant defender)
         {
-            CombatUI.Get.UpdateCombatLog(attacker.GetName() + " commited to hard to your attack and missed.");
+            //CombatUI.Get.UpdateCombatLog(attacker.GetName() + " commited to hard to your attack and missed.");
+            AudioManager.Get.PlaySoundEffect(AudioManager.SoundLibrary.sfx_miss);
             return;
         }
     }

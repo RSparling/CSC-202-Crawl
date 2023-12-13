@@ -10,23 +10,37 @@ using System.Threading.Tasks;
 
 namespace Dungeon_Crawl.src.Character
 {
-    internal class Monster : ICombatant
+    public class Monster : ICombatant
     {
         private Stats stats = new Stats(); // Declare a private variable to store the monster's stats
 
-        private Image image;
+        //private Image image;
 
-        public Monster()
+        private ICombatant enemy;
+
+        private List<ISkill> attacks = new List<ISkill>();
+        private List<IEffect> activeEffects = new List<IEffect>();
+
+        public Monster(Image image, string name, int hitpoints, int maxHitpoints, int fatigue, int maxFatigue, int strength, int agility, int vitality, int intelligence, ISkill[] moves)
         {
-            stats = new Stats(); // Initialize the stats object with default values
-            attacks = new List<ISkill>(); // Initialize the list of attacks
-            attacks.Add(new HeavySlash());
-            attacks.Add(new RiskySlash());
+            this.name = name; // Set the monster's name to the provided name
+            this.image = image;
+            stats[Stat.Hitpoints] = hitpoints; // Set the monster's hitpoints to the provided hitpoints
+            stats[Stat.MaxHitpoints] = maxHitpoints; // Set the monster's maximum hitpoints to the provided maximum hitpoints
+            stats[Stat.FatiguePoints] = fatigue; // Set the monster's fatigue to the provided fatigue
+            stats[Stat.MaxFatiguePoints] = maxFatigue; // Set the monster's maximum fatigue to the provided maximum fatigue
+            stats[Stat.Strength] = strength; // Set the monster's strength to the provided strength
+            stats[Stat.Agility] = agility; // Set the monster's dexterity to the provided dexterity
+            stats[Stat.Vitality] = vitality; // Set the monster's vitality to the provided vitality
+            stats[Stat.Intelligence] = intelligence;
+            attacks.AddRange(moves);
         }
+
+        public Image image;
 
         public void SetMonsterImage()
         {
-            CombatUI.Get.SetMonsterImage(image);
+            //CombatUI.Get.SetMonsterImage(image);
         }
 
         public void SetStats(Stats stats)
@@ -76,23 +90,51 @@ namespace Dungeon_Crawl.src.Character
             stats.TakeDamage(damage); // Reduce the monster's hitpoints by the specified amount
         }
 
-        private List<ISkill> attacks;
-
         //preform random skill with monster as attacker and player as defender
         public void Attack()
         {
             Random rand = new Random(Guid.NewGuid().GetHashCode());
 
             int i = rand.Next(0, attacks.Count); // Get a random number between 0 and the number of attacks the monster has
-            if (attacks[i].IsSuccessful(this, Player.Get))
-                attacks[i].OnSuccess(this, Player.Get); // If the attack is successful, perform the attack
+            if (attacks[i].IsSuccessful(this, enemy))
+                attacks[i].OnSuccess(this, enemy); // If the attack is successful, perform the attack
             else
-                attacks[i].OnFail(this, Player.Get); // If the attack is unsuccessful, perform the fail action
+                attacks[i].OnFail(this, enemy); // If the attack is unsuccessful, perform the fail action
         }
 
         public string GetName()
         {
             return name;
+        }
+
+        public void SetCurrentEnemy(ICombatant combatant)
+        {
+            enemy = combatant;
+        }
+
+        public void ProcessEffects()
+        {
+            List<IEffect> effectsToRemove = new List<IEffect>();
+
+            foreach (IEffect effect in activeEffects)
+            {
+                if (effect.Update(this))
+                {
+                    effect.OnRemove(this);
+                    effectsToRemove.Add(effect);
+                }
+            }
+
+            foreach (IEffect effect in effectsToRemove)
+            {
+                activeEffects.Remove(effect);
+            }
+        }
+
+        public void AddEffect(IEffect effect)
+        {
+            effect.OnApply(this);
+            activeEffects.Add(effect);
         }
     }
 }
